@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:splitMotionEvents="true"
-    android:visibility="visible"
     tools:context=".HomeActivity">
 
     <TextView
@@ -37,8 +35,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:clickable="true"
-        android:contextClickable="true"
         android:fontFamily="@font/calligraffitti"
         android:text="Starters"
         android:textSize="20sp"
@@ -52,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:clickable="true"
+
         android:fontFamily="@font/calligraffitti"
         android:text="Main courses"
         android:textSize="20sp"
@@ -65,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:clickable="true"
+
         android:fontFamily="@font/calligraffitti"
         android:text="Deserts"
         android:textSize="20sp"
