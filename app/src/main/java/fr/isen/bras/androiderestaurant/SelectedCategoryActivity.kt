@@ -63,7 +63,10 @@ class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
     }
     override fun onCellClickListener(item: ItemsViewModel) {
         val monIntent : Intent =  Intent(this,Detail::class.java)
-        monIntent.putExtra("title", item.text)
+        monIntent.putExtra("itemDish", item)
+
+
+
         startActivity(monIntent)
     }
 
