@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidERestaurant</string>
+    <string name="item1">pizza</string>
 </resources>
+

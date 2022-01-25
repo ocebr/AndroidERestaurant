@@ -6,13 +6,22 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import fr.isen.bras.androiderestaurant.databinding.ActivityHomeBinding
+
+import fr.isen.bras.androiderestaurant.databinding.ActivitySelectedCategoryBinding
 
 class SelectedCategoryActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySelectedCategoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_selected_category)
+        binding = ActivitySelectedCategoryBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val back = findViewById<Button>(R.id.back)
+
+        val back = binding.back
+
         val monIntentRetour : Intent =  Intent(this,HomeActivity::class.java)
 
         back.setOnClickListener {
@@ -23,8 +32,7 @@ class SelectedCategoryActivity : AppCompatActivity() {
         if (intent.hasExtra("selectedCategory")) {
             str = intent.getStringExtra("selectedCategory")
         }
-
-        val textViewCategory = findViewById<TextView>(R.id.category)
+        val textViewCategory = binding.category
         textViewCategory.setText(str)
 
 

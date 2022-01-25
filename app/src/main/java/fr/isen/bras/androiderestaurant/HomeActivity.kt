@@ -6,16 +6,22 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import fr.isen.bras.androiderestaurant.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
 
-        val tvStarter = findViewById<TextView>(R.id.starters)
-        val tvMainCourse = findViewById<TextView>(R.id.Maincourse)
-        val tvDesserts = findViewById<TextView>(R.id.Desserts)
+        val tvStarter = binding.starters
+        val tvMainCourse = binding.Maincourse
+        val tvDesserts = binding.Desserts
 
 
         // set on-click listener
@@ -26,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
             //Log.w("home activity", "je suis passé par ici")
             Log.i("info","end of Home Activity")
             changeActivityWithCategory(str)
+            finish()
         }
         tvMainCourse.setOnClickListener {
             val str: String = tvMainCourse.getText().toString()
@@ -34,6 +41,7 @@ class HomeActivity : AppCompatActivity() {
             //Log.w("home activity", "je suis passé par ici")
             Log.i("info","end of Home Activity")
             changeActivityWithCategory(str)
+            finish()
         }
         tvDesserts.setOnClickListener {
             val str :String = tvDesserts.getText().toString()
@@ -42,6 +50,7 @@ class HomeActivity : AppCompatActivity() {
             //Log.w("home activity", "je suis passé par ici")
             Log.i("info","end of Home Activity")
             changeActivityWithCategory(str)
+            finish()
 
         }
 
