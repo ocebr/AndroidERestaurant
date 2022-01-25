@@ -32,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
             //Log.w("home activity", "je suis passé par ici")
             Log.i("info","end of Home Activity")
             changeActivityWithCategory(str)
-            finish()
+
         }
         tvMainCourse.setOnClickListener {
             val str: String = tvMainCourse.getText().toString()
@@ -41,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
             //Log.w("home activity", "je suis passé par ici")
             Log.i("info","end of Home Activity")
             changeActivityWithCategory(str)
-            finish()
+
         }
         tvDesserts.setOnClickListener {
             val str :String = tvDesserts.getText().toString()
@@ -50,7 +50,7 @@ class HomeActivity : AppCompatActivity() {
             //Log.w("home activity", "je suis passé par ici")
             Log.i("info","end of Home Activity")
             changeActivityWithCategory(str)
-            finish()
+
 
         }
 

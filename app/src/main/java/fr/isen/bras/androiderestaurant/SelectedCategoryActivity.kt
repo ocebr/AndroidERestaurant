@@ -1,12 +1,13 @@
 package fr.isen.bras.androiderestaurant
 
+import CustomAdapter
+import ItemsViewModel
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import fr.isen.bras.androiderestaurant.databinding.ActivityHomeBinding
+
+import androidx.recyclerview.widget.LinearLayoutManager
+
 
 import fr.isen.bras.androiderestaurant.databinding.ActivitySelectedCategoryBinding
 
@@ -20,12 +21,12 @@ class SelectedCategoryActivity : AppCompatActivity() {
         setContentView(view)
 
 
-        val back = binding.back
+
 
         val monIntentRetour : Intent =  Intent(this,HomeActivity::class.java)
 
-        back.setOnClickListener {
-            startActivity(monIntentRetour)
+        binding.back.setOnClickListener {
+            finish()
         }
 
         var str: String? = ""
@@ -36,7 +37,38 @@ class SelectedCategoryActivity : AppCompatActivity() {
         textViewCategory.setText(str)
 
 
+
+
+
+
+
+        // getting the recyclerview by its id
+        val recyclerview = binding.recyclerview
+
+        // this creates a vertical layout Manager
+        recyclerview.layoutManager = LinearLayoutManager(this)
+
+        // ArrayList of class ItemsViewModel
+        val data = ArrayList<ItemsViewModel>()
+
+        // This loop will create 20 Views containing
+        // the image with the count of view
+        for (i in 1..20) {
+            data.add(ItemsViewModel( R.drawable.pizza,"Item " + i,"detail"))
+        }
+
+        // This will pass the ArrayList to our Adapter
+        val adapter = CustomAdapter(data)
+
+        // Setting the Adapter with the recyclerview
+        recyclerview.adapter = adapter
+
     }
 
 
+
+
+
+
 }
+
