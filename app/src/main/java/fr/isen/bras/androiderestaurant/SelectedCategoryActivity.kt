@@ -1,5 +1,6 @@
 package fr.isen.bras.androiderestaurant
 
+import CellClickListener
 import CustomAdapter
 import ItemsViewModel
 import android.content.Intent
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import fr.isen.bras.androiderestaurant.databinding.ActivitySelectedCategoryBinding
 
-class SelectedCategoryActivity : AppCompatActivity() {
+class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
 
     private lateinit var binding: ActivitySelectedCategoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +24,7 @@ class SelectedCategoryActivity : AppCompatActivity() {
 
 
 
-        val monIntentRetour : Intent =  Intent(this,HomeActivity::class.java)
+
 
         binding.back.setOnClickListener {
             finish()
@@ -35,10 +36,6 @@ class SelectedCategoryActivity : AppCompatActivity() {
         }
         val textViewCategory = binding.category
         textViewCategory.setText(str)
-
-
-
-
 
 
 
@@ -58,14 +55,17 @@ class SelectedCategoryActivity : AppCompatActivity() {
         }
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(data)
+        val adapter = CustomAdapter(data, this)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
 
     }
-
-
+    override fun onCellClickListener(item: ItemsViewModel) {
+        val monIntent : Intent =  Intent(this,Detail::class.java)
+        monIntent.putExtra("title", item.text)
+        startActivity(monIntent)
+    }
 
 
 

@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant">
         <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Detail"
+            android:exported="false" />
+        <activity
             android:name=".SelectedCategoryActivity"
             android:exported="false" />
         <activity

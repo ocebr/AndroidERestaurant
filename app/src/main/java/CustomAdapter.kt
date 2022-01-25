@@ -9,7 +9,7 @@ import fr.isen.bras.androiderestaurant.R
 
 
 
-class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val mList: List<ItemsViewModel>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
 
 
     // create new views
@@ -27,12 +27,15 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
 
         val ItemsViewModel = mList[position]
 
-        // sets the image to the imageview from our itemHolder class
-        holder.itemImage.setImageResource(ItemsViewModel.image)
 
-        // sets the text to the textview from our itemHolder class
+        holder.itemImage.setImageResource(ItemsViewModel.image)
         holder.itemText.text = ItemsViewModel.text
         holder.itemDetail.text = ItemsViewModel.detail
+
+        val data = mList[position]
+        holder.itemView.setOnClickListener {
+            cellClickListener.onCellClickListener(data)
+        }
 
     }
 
