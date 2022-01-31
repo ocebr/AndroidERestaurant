@@ -1,3 +1,5 @@
+package fr.isen.bras.androiderestaurant
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -5,11 +7,11 @@ import android.widget.ImageView
 
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.bras.androiderestaurant.R
+import fr.isen.bras.androiderestaurant.model.DishModel
+import fr.isen.bras.androiderestaurant.model.ItemsViewModel
 
 
-
-class CustomAdapter(private val mList: List<ItemsViewModel>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapter(private val mList: List<DishModel>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
 
 
     // create new views
@@ -25,12 +27,12 @@ class CustomAdapter(private val mList: List<ItemsViewModel>, private val cellCli
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val ItemsViewModel = mList[position]
+        val dish = mList[position]
 
 
-        holder.itemImage.setImageResource(ItemsViewModel.image)
-        holder.itemText.text = ItemsViewModel.text
-        holder.itemDetail.text = ItemsViewModel.detail
+        //holder.itemImage.setImageResource(DishModel.)
+        holder.itemText.text = dish.name_fr
+        //holder.itemDetail.text = ItemsViewModel.detail
 
         val data = mList[position]
         holder.itemView.setOnClickListener {
@@ -46,9 +48,9 @@ class CustomAdapter(private val mList: List<ItemsViewModel>, private val cellCli
 
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val itemImage: ImageView = itemView.findViewById(R.id.itemimage)
+        //val itemImage: ImageView = itemView.findViewById(R.id.itemimage)
         val itemText: TextView = itemView.findViewById(R.id.itemtext)
-        val itemDetail: TextView = itemView.findViewById(R.id.itemdetail)
+        //val itemDetail: TextView = itemView.findViewById(R.id.itemdetail)
     }
 }
 

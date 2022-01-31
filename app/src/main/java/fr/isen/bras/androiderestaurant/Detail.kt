@@ -1,12 +1,11 @@
 package fr.isen.bras.androiderestaurant
 
-import ItemsViewModel
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import fr.isen.bras.androiderestaurant.databinding.ActivityDetailBinding
+import fr.isen.bras.androiderestaurant.model.ItemsViewModel
 
 class Detail : AppCompatActivity() {
 

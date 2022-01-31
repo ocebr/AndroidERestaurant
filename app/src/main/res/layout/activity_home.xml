@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/calligraffitti"
-        android:text="Starters"
+        android:text="Entrées"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -50,7 +50,7 @@
         android:layout_marginTop="56dp"
 
         android:fontFamily="@font/calligraffitti"
-        android:text="Main courses"
+        android:text="Plats"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
         android:layout_marginTop="56dp"
 
         android:fontFamily="@font/calligraffitti"
-        android:text="Deserts"
+        android:text="Desserts"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

@@ -8,15 +8,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 
 
-import CellClickListener
-import CustomAdapter
-import ItemsViewModel
+import android.util.Log
+import com.google.gson.Gson
+import fr.isen.bras.androiderestaurant.model.DishModel
+import fr.isen.bras.androiderestaurant.model.DishResult
+import fr.isen.bras.androiderestaurant.model.ItemsViewModel
 
 
 class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
@@ -37,41 +38,35 @@ class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
             finish()
         }
 
-        var str: String? = ""
+        var category: String? = ""
         if (intent.hasExtra("selectedCategory")) {
-            str = intent.getStringExtra("selectedCategory")
+            category = intent.getStringExtra("selectedCategory")
         }
         val textViewCategory = binding.category
-        textViewCategory.setText(str)
+        textViewCategory.setText(category)
 
 
 
         //http request to the API
-
-        val textView = findViewById<TextView>(R.id.httpresponse)
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/menu"
         val jsonObject = JSONObject()
-        jsonObject.put("id_shop","1")
-
+        jsonObject.put("id_shop", "1")
 
         // Request a string response from the provided URL.
         val request = JsonObjectRequest(
-            Request.Method.POST, url,jsonObject,
-            Response.Listener { response ->
+            Request.Method.POST, url, jsonObject,
+            { response ->
 
-                try {
-                    textView.text = "Response: $response"
-                }catch (e:Exception){
-                    textView.text = "Exception: $e"
-                }
+                var gson = Gson()
+                var dishresult = gson.fromJson(response.toString(), DishResult::class.java)
+                displayDishes(dishresult.data.firstOrNull { it.name_fr == category }?.items ?: listOf())
 
-
-
-
-            }, Response.ErrorListener{
+                //textView.text = "Response: ${dishresult.data[1].items[0].name_fr}"
+                Log.d("", "$response")
+            }, {
                 // Error in request
-                textView.text = "Volley error: $it"
+                Log.i("","Volley error: $it")
             })
 
         // Volley request policy, only one time request to avoid duplicate transaction
@@ -81,42 +76,32 @@ class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
             0, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
             1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         )
-
         // Add the volley post request to the request queue
-        VolleySingleton.getInstance(this).addToRequestQueue(request)
+        queue.add(request)
 
 
+    }
 
-
-
-
-
-
+    private fun displayDishes (dishresult: List<DishModel>){
         // getting the recyclerview by its id
         val recyclerview = binding.recyclerview
 
         // this creates a vertical layout Manager
         recyclerview.layoutManager = LinearLayoutManager(this)
 
-        // ArrayList of class ItemsViewModel
-        val data = ArrayList<ItemsViewModel>()
-
-        // This loop will create 20 Views containing
-        // the image with the count of view
-        for (i in 1..20) {
-            data.add(ItemsViewModel( R.drawable.pizza,"Item " + i,"detail"))
-        }
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(data, this)
+        val adapter = CustomAdapter(dishresult, this)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
 
     }
-    override fun onCellClickListener(item: ItemsViewModel) {
+
+
+    override fun onCellClickListener(data: DishModel) {
         val monIntent : Intent =  Intent(this,Detail::class.java)
-        monIntent.putExtra("itemDish", item)
+        monIntent.putExtra("itemDish", data)
 
 
 
