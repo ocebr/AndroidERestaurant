@@ -1,6 +1,5 @@
 package fr.isen.bras.androiderestaurant
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.bras.androiderestaurant.model.DishModel
-import fr.isen.bras.androiderestaurant.model.ItemsViewModel
 
 
 class CustomAdapter(private val mList: List<DishModel>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
@@ -67,5 +65,8 @@ class CustomAdapter(private val mList: List<DishModel>, private val cellClickLis
         val itemprice: TextView=itemView.findViewById(R.id.price)
 
     }
+
+
+
 }
 

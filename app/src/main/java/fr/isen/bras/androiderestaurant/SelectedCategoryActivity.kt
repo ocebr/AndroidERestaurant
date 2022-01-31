@@ -96,17 +96,19 @@ class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
 
+
     }
 
 
     override fun onCellClickListener(data: DishModel) {
         val monIntent : Intent =  Intent(this,Detail::class.java)
         monIntent.putExtra("itemDish", data)
-
-
-
         startActivity(monIntent)
     }
+
+
+
+
 
 
 
