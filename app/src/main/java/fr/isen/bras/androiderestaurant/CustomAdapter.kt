@@ -1,5 +1,6 @@
 package fr.isen.bras.androiderestaurant
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import fr.isen.bras.androiderestaurant.model.DishModel
 import fr.isen.bras.androiderestaurant.model.ItemsViewModel
 
@@ -29,10 +31,22 @@ class CustomAdapter(private val mList: List<DishModel>, private val cellClickLis
 
         val dish = mList[position]
 
+        if(dish.images[0]!="") {
+            Picasso.get()
+                .load(dish.images[0])
+                .error(R.drawable.pizza)
+                .into(holder.itemImage)
 
-        //holder.itemImage.setImageResource(DishModel.)
+
+
+        }
+        else{
+            holder.itemImage.setImageResource(R.drawable.pizza)
+        }
+
         holder.itemText.text = dish.name_fr
-        //holder.itemDetail.text = ItemsViewModel.detail
+        holder.itemprice.text = dish.prices[0].price+"€"
+
 
         val data = mList[position]
         holder.itemView.setOnClickListener {
@@ -48,9 +62,10 @@ class CustomAdapter(private val mList: List<DishModel>, private val cellClickLis
 
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        //val itemImage: ImageView = itemView.findViewById(R.id.itemimage)
+        val itemImage: ImageView = itemView.findViewById(R.id.itemimage)
         val itemText: TextView = itemView.findViewById(R.id.itemtext)
-        //val itemDetail: TextView = itemView.findViewById(R.id.itemdetail)
+        val itemprice: TextView=itemView.findViewById(R.id.price)
+
     }
 }
 

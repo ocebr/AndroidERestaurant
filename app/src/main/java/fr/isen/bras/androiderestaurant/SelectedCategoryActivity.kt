@@ -17,7 +17,7 @@ import android.util.Log
 import com.google.gson.Gson
 import fr.isen.bras.androiderestaurant.model.DishModel
 import fr.isen.bras.androiderestaurant.model.DishResult
-import fr.isen.bras.androiderestaurant.model.ItemsViewModel
+
 
 
 class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
@@ -62,7 +62,7 @@ class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
                 var dishresult = gson.fromJson(response.toString(), DishResult::class.java)
                 displayDishes(dishresult.data.firstOrNull { it.name_fr == category }?.items ?: listOf())
 
-                //textView.text = "Response: ${dishresult.data[1].items[0].name_fr}"
+
                 Log.d("", "$response")
             }, {
                 // Error in request
