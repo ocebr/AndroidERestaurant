@@ -1,16 +1,23 @@
 package fr.isen.bras.androiderestaurant
+import fr.isen.bras.androiderestaurant.databinding.ActivitySelectedCategoryBinding
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
+
 
 import CellClickListener
 import CustomAdapter
 import ItemsViewModel
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 
-import androidx.recyclerview.widget.LinearLayoutManager
-
-
-import fr.isen.bras.androiderestaurant.databinding.ActivitySelectedCategoryBinding
 
 class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
 
@@ -36,6 +43,52 @@ class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
         }
         val textViewCategory = binding.category
         textViewCategory.setText(str)
+
+
+
+        //http request to the API
+
+        val textView = findViewById<TextView>(R.id.httpresponse)
+        val queue = Volley.newRequestQueue(this)
+        val url = "http://test.api.catering.bluecodegames.com/menu"
+        val jsonObject = JSONObject()
+        jsonObject.put("id_shop","1")
+
+
+        // Request a string response from the provided URL.
+        val request = JsonObjectRequest(
+            Request.Method.POST, url,jsonObject,
+            Response.Listener { response ->
+
+                try {
+                    textView.text = "Response: $response"
+                }catch (e:Exception){
+                    textView.text = "Exception: $e"
+                }
+
+
+
+
+            }, Response.ErrorListener{
+                // Error in request
+                textView.text = "Volley error: $it"
+            })
+
+        // Volley request policy, only one time request to avoid duplicate transaction
+        request.retryPolicy = DefaultRetryPolicy(
+            DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+            // 0 means no retry
+            0, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
+            1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
+
+        // Add the volley post request to the request queue
+        VolleySingleton.getInstance(this).addToRequestQueue(request)
+
+
+
+
+
 
 
 

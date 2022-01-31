@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import fr.isen.bras.androiderestaurant.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -60,6 +64,8 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun changeActivityWithCategory(str : String) {
+
+
         val monIntent : Intent =  Intent(this,SelectedCategoryActivity::class.java)
         monIntent.putExtra("selectedCategory", str)
         startActivity(monIntent)

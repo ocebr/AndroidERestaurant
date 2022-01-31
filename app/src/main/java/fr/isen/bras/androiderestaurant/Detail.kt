@@ -38,5 +38,9 @@ class Detail : AppCompatActivity() {
         }
 
 
+
+
+
+
     }
 }
