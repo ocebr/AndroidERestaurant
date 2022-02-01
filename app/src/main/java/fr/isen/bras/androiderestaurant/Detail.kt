@@ -1,15 +1,25 @@
 package fr.isen.bras.androiderestaurant
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import fr.isen.bras.androiderestaurant.model.DishModel
 
 
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
+import fr.isen.bras.androiderestaurant.model.DishBasket
+import fr.isen.bras.androiderestaurant.model.DishResult
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
 
 class Detail : AppCompatActivity() {
 
@@ -19,7 +29,7 @@ class Detail : AppCompatActivity() {
 
         val itemDish= intent.getSerializableExtra("itemDish") as DishModel
 
-        var quantity : Int=1
+        var quantity = 1
 
 
         val detail_title = findViewById<TextView>(R.id.detailtitle)
@@ -57,7 +67,7 @@ class Detail : AppCompatActivity() {
         buttonplus.setOnClickListener{
             quantity++
 
-            val totalprice = (itemDish.prices[0].price.toInt())*quantity
+            val totalprice = (itemDish.prices[0].price.toFloat())*quantity.toFloat()
             pricedisplay.text = "Total   "+"$totalprice"+ "€"
             quantitydiplay.text="$quantity"
 
@@ -69,18 +79,32 @@ class Detail : AppCompatActivity() {
             if (quantity>1) quantity --
             else quantity =1
 
-            val totalprice = (itemDish.prices[0].price.toInt())*quantity
+            val totalprice :Float = (itemDish.prices[0].price.toFloat())*quantity
             pricedisplay.text="Total   "+"$totalprice"+ "€"
             quantitydiplay.text="$quantity"
 
-        }
-
-        quantitydiplay.setOnClickListener(){
 
         }
 
+        pricedisplay.setOnClickListener(){
 
-        //back bbutton
+            val filename = "/basket.json"
+            Snackbar.make(it,"Ajouté au panier", Snackbar.LENGTH_LONG).show()
+            File(cacheDir.absolutePath + filename).bufferedWriter().use { file->
+                file.write(Gson().toJson(DishBasket(itemDish,quantity)))
+            }
+
+            val recuperation = File(cacheDir.absolutePath + filename).bufferedReader().readText();
+
+            Gson().fromJson(recuperation,DishBasket::class.java);
+
+            Log.d("panier","$recuperation")
+
+            //Toast.makeText(applicationContext,"data save", Toast.LENGTH_LONG).show()*/
+        }
+
+
+        //back button
        back.setOnClickListener {
             finish()
         }

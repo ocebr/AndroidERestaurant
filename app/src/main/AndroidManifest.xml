@@ -16,6 +16,7 @@
 
         >
 
+
         <activity
             android:name=".Detail"
             android:exported="false" />
