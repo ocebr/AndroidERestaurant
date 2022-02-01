@@ -15,7 +15,7 @@
         android:layout_marginEnd="351dp"
         android:backgroundTint="#EFE9E9"
         app:icon="?attr/actionModeCloseDrawable"
-        app:iconTint="#E91E63"
+        app:iconTint="#B29DD8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,6 +25,7 @@
         android:id="@+id/detailtitle"
         android:layout_width="352dp"
         android:layout_height="43dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="84dp"
         android:fontFamily="@font/calligraffitti"
         android:text="TextView"
@@ -32,33 +33,29 @@
         app:layout_constraintBottom_toTopOf="@+id/detailprice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailImage"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager"
         tools:text="title" />
 
-    <ImageView
-        android:id="@+id/detailImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/detailtitle"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="239dp"
+        android:layout_height="167dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/detailprice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
+        android:layout_width="319dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="384dp"
+        android:background="#C0AAE6"
         android:fontFamily="monospace"
-        android:text="Price"
+        android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailtitle"
         app:layout_goneMarginTop="8dp" />
@@ -69,10 +66,48 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/calligraffitti"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/detailprice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailtitle"
         app:layout_constraintVertical_bias="0.23000002" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/plus"
+        android:layout_width="56dp"
+        android:layout_height="54dp"
+        android:clickable="true"
+        app:backgroundTint="#F8F0F0"
+        app:layout_constraintBottom_toTopOf="@+id/detailprice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailtext"
+        app:srcCompat="@drawable/bouton_plus" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/moins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="#EDE6E6"
+        app:layout_constraintBottom_toTopOf="@+id/detailprice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailtext"
+        app:srcCompat="@drawable/bouton_moins" />
+
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/detailprice"
+        app:layout_constraintEnd_toStartOf="@+id/moins"
+        app:layout_constraintStart_toEndOf="@+id/plus"
+        app:layout_constraintTop_toBottomOf="@+id/detailtext" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

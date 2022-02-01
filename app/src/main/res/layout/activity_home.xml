@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    >
 
     <TextView
         android:id="@+id/Title"
@@ -22,10 +23,10 @@
 
     <ImageView
         android:id="@+id/food"
-        android:layout_width="348dp"
-        android:layout_height="200dp"
+        android:layout_width="416dp"
+        android:layout_height="269dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/italian_food" />

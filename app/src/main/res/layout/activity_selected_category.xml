@@ -29,7 +29,7 @@
         android:layout_height="43dp"
         android:backgroundTint="#EFE9E9"
         app:icon="?attr/actionModeCloseDrawable"
-        app:iconTint="#E91E63"
+        app:iconTint="#B69FDD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
