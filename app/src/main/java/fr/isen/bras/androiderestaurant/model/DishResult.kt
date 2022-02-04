@@ -1,5 +1,6 @@
 package fr.isen.bras.androiderestaurant.model
 
+import java.io.ObjectInput
 import java.io.Serializable
 
 data class DishResult(val data: List<CategoryModel>): Serializable

@@ -1,10 +1,14 @@
 package fr.isen.bras.androiderestaurant
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
 import androidx.fragment.app.Fragment
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
@@ -16,7 +20,7 @@ import fr.isen.bras.androiderestaurant.model.DishResult
 import org.json.JSONObject
 
 
-class SignUpFragment : Fragment(R.layout.signup_fragment) {
+class SignUpFragment : Fragment(R.layout.signup_fragment){
 
     private lateinit var binding: SignupFragmentBinding
 
@@ -32,20 +36,28 @@ class SignUpFragment : Fragment(R.layout.signup_fragment) {
             (activity as? ConnectionActivity)?.changeFragmentToLogin()
         }
         binding.enregistrer.setOnClickListener {
-            createaccount()
+            val nom = binding.Nominput.editText?.text.toString()
+            val prenom = binding.prenominput.editText?.text.toString()
+            val mail = binding.adressemailinput.editText?.text.toString()
+            val mdp = binding.motdepasseinput.editText?.text.toString()
+            val adresse = binding.adresse.editText?.text.toString()
+
+            if(isInputValid(nom) && isInputValid(prenom) && isInputValid(mdp) &&isInputValid(adresse) && isEmailValid(mail)) {
+                createaccount(nom, prenom, mail, mdp, adresse)
+
+            }
+            else{
+                Toast.makeText(context, "Champs invalides",Toast.LENGTH_LONG).show()
+            }
+
         }
 
 
 
     }
 
-    private fun createaccount(){
+    private fun createaccount(nom : String, prenom : String, mail: String, mdp : String, adresse: String){
 
-        val nom = binding.Nominput.editText?.text.toString()
-        val prenom = binding.prenominput.editText?.text.toString()
-        val mail = binding.adressemailinput.editText?.text.toString()
-        val mdp = binding.motdepasseinput.editText?.text.toString()
-        val adresse = binding.adresse.editText?.text.toString()
 
         val queue = Volley.newRequestQueue(context)
         val url = "http://test.api.catering.bluecodegames.com/user/register"
@@ -66,6 +78,7 @@ class SignUpFragment : Fragment(R.layout.signup_fragment) {
             }, {
                 // Error in request
                 Log.i("","Volley error: $it")
+
             })
 
         // Volley request policy, only one time request to avoid duplicate transaction
@@ -81,6 +94,15 @@ class SignUpFragment : Fragment(R.layout.signup_fragment) {
 
 
     }
+
+    fun isEmailValid(mail: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()
+    }
+    fun isInputValid(name: String) :Boolean {
+        return name.length > 8
+
+    }
+
 
 
 
