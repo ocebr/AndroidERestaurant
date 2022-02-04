@@ -12,7 +12,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import fr.isen.bras.androiderestaurant.databinding.ActivityHomeBinding
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : MenuActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 

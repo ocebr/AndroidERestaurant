@@ -1,27 +1,20 @@
 package fr.isen.bras.androiderestaurant
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import fr.isen.bras.androiderestaurant.model.DishModel
-
-
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import fr.isen.bras.androiderestaurant.model.DishBasket
-import fr.isen.bras.androiderestaurant.model.DishResult
 import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
 
-class Detail : AppCompatActivity() {
+
+class Detail : MenuActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,21 +80,40 @@ class Detail : AppCompatActivity() {
         }
 
         pricedisplay.setOnClickListener(){
-
+            val itemtoadd = DishBasket(itemDish,quantity)
             val filename = "/basket.json"
+            val file :File = File(cacheDir.absolutePath + filename)
+
+
             Snackbar.make(it,"Ajouté au panier", Snackbar.LENGTH_LONG).show()
-            File(cacheDir.absolutePath + filename).bufferedWriter().use { file->
-                file.write(Gson().toJson(DishBasket(itemDish,quantity)))
+            var dishbasket: List<DishBasket> =ArrayList<DishBasket>()
+
+            if (file.exists()) {
+                dishbasket= Gson().fromJson(file.readText(), List::class.java) as List<DishBasket>
             }
 
-            val recuperation = File(cacheDir.absolutePath + filename).bufferedReader().readText();
 
-            Gson().fromJson(recuperation,DishBasket::class.java);
 
-            Log.d("panier","$recuperation")
+            //dishbasket.forEach { if(it.itemdish.name_fr == itemtoadd.itemdish.name_fr) it.quantity += itemtoadd.quantity  }
 
-            //Toast.makeText(applicationContext,"data save", Toast.LENGTH_LONG).show()*/
-        }
+            //dishbasket+=itemtoadd
+
+
+            file.writeText(Gson().toJson(dishbasket))
+
+            val monIntent : Intent =  Intent(this,ConnectionActivity::class.java)
+            startActivity(monIntent)
+
+            }
+
+
+
+
+
+
+
+
+
 
 
         //back button

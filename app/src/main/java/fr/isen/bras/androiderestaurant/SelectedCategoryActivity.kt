@@ -20,7 +20,7 @@ import fr.isen.bras.androiderestaurant.model.DishResult
 
 
 
-class SelectedCategoryActivity : AppCompatActivity(), CellClickListener {
+class SelectedCategoryActivity : MenuActivity(), CellClickListener {
 
     private lateinit var binding: ActivitySelectedCategoryBinding
     override fun onCreate(savedInstanceState: Bundle?) {

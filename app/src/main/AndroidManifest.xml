@@ -6,17 +6,19 @@
 
     <application
         android:allowBackup="true"
+        android:fontFamily="casual"
         android:icon="@color/design_default_color_background"
         android:label="FOOD LOVER"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light"
-        android:usesCleartextTraffic="true"
-        android:fontFamily="casual"
-
-        >
-
-
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ConnectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
         <activity
             android:name=".Detail"
             android:exported="false" />
