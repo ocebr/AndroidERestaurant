@@ -1,5 +1,7 @@
 package fr.isen.bras.androiderestaurant
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import fr.isen.bras.androiderestaurant.databinding.ActivityConnectionBinding
+import fr.isen.bras.androiderestaurant.model.LoginResult
 
 
 class ConnectionActivity : MenuActivity(){
@@ -28,6 +31,13 @@ class ConnectionActivity : MenuActivity(){
             finish()
         }
 
+        val id_user = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("mail","").toString()
+        if(id_user!=""){
+            val fragmentManager: FragmentManager = supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainerView,BlankFragment()).commit()
+        }
+
     }
 
     fun changeFragmentToLogin(){
@@ -41,6 +51,18 @@ class ConnectionActivity : MenuActivity(){
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainerView,SignUpFragment()).commit()
+    }
+
+    fun saveId (id : String){
+        val sharedPreferences = getSharedPreferences("IdSaving", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("mail", id)
+        editor.apply()
+        editor.commit()
+
+
+
+        Log.d("recup file",sharedPreferences.getString("mail","").toString())
     }
 
 }

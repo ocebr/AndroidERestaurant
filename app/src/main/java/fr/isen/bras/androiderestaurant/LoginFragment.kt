@@ -1,5 +1,7 @@
 package fr.isen.bras.androiderestaurant
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -70,10 +72,13 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
                 Log.d("identifiant","$id")
 
                 Log.d("", "$response")
+                (activity as ConnectionActivity)?.saveId(id.data.email)
+
             }, {
                 // Error in request
                 Log.i("","Volley error: $it")
             })
+
 
         // Volley request policy, only one time request to avoid duplicate transaction
         request.retryPolicy = DefaultRetryPolicy(

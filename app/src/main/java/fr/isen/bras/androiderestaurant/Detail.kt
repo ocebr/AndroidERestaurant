@@ -1,5 +1,6 @@
 package fr.isen.bras.androiderestaurant
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -16,6 +17,7 @@ import java.io.File
 
 class Detail : MenuActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -26,17 +28,17 @@ class Detail : MenuActivity() {
 
 
         val detail_title = findViewById<TextView>(R.id.detailtitle)
-        var buttonmoins =findViewById<FloatingActionButton>(R.id.moins)
-        var viewPager = findViewById<ViewPager>(R.id.viewPager)
+        val buttonmoins =findViewById<FloatingActionButton>(R.id.moins)
+        val viewPager = findViewById<ViewPager>(R.id.viewPager)
         val detail_text = findViewById<TextView>(R.id.detailtext)
-        var quantitydiplay =findViewById<TextView>(R.id.quantity)
+        val quantitydiplay =findViewById<TextView>(R.id.quantity)
         val pricedisplay = findViewById<TextView>(R.id.detailprice)
-        var buttonplus =findViewById<FloatingActionButton>(R.id.plus)
+        val buttonplus =findViewById<FloatingActionButton>(R.id.plus)
         val back =findViewById<Button>(R.id.detailback)
 
         //carrousel image
-        var imgs: List <String> = itemDish.images
-        var adapter = ViewPagerAdapter(this, imgs)
+        val imgs: List <String> = itemDish.images
+        val adapter = ViewPagerAdapter(this, imgs)
         viewPager.adapter =adapter
 
 
@@ -101,7 +103,7 @@ class Detail : MenuActivity() {
 
             file.writeText(Gson().toJson(dishbasket))
 
-            val monIntent : Intent =  Intent(this,ConnectionActivity::class.java)
+            val monIntent : Intent =  Intent(this,BasketActivity::class.java)
             startActivity(monIntent)
 
             }

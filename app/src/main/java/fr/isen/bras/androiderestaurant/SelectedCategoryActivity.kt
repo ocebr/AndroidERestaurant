@@ -2,9 +2,7 @@ package fr.isen.bras.androiderestaurant
 import fr.isen.bras.androiderestaurant.databinding.ActivitySelectedCategoryBinding
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
@@ -91,7 +89,7 @@ class SelectedCategoryActivity : MenuActivity(), CellClickListener {
 
 
         // This will pass the ArrayList to our Adapter
-        val adapter = CustomAdapter(dishresult, this)
+        val adapter = CustomAdapterForDishDisplayByCategory(dishresult, this)
 
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter

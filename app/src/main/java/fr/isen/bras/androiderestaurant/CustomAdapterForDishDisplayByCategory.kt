@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import fr.isen.bras.androiderestaurant.model.DishModel
 
 
-class CustomAdapter(private val mList: List<DishModel>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapterForDishDisplayByCategory(private val mList: List<DishModel>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapterForDishDisplayByCategory.ViewHolder>(){
 
 
     // create new views
