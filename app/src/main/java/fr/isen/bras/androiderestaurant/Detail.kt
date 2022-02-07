@@ -11,6 +11,8 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import fr.isen.bras.androiderestaurant.databinding.ActivityBasketBinding
+import fr.isen.bras.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.bras.androiderestaurant.model.DishBasket
 import fr.isen.bras.androiderestaurant.model.SavedDishInBasket
 import java.io.File
@@ -19,91 +21,106 @@ import java.io.File
 class Detail : MenuActivity() {
 
     @SuppressLint("SetTextI18n")
+    private lateinit var binding: ActivityDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val itemDish= intent.getSerializableExtra("itemDish") as DishModel
+        val itemDish = intent.getSerializableExtra("itemDish") as DishModel
 
         var quantity = 1
 
 
-        val detail_title = findViewById<TextView>(R.id.detailtitle)
-        val buttonmoins =findViewById<FloatingActionButton>(R.id.moins)
-        val viewPager = findViewById<ViewPager>(R.id.viewPager)
-        val detail_text = findViewById<TextView>(R.id.detailtext)
-        val quantitydiplay =findViewById<TextView>(R.id.quantity)
-        val pricedisplay = findViewById<TextView>(R.id.detailprice)
-        val buttonplus =findViewById<FloatingActionButton>(R.id.plus)
-        val back =findViewById<Button>(R.id.detailback)
+
 
         //carrousel image
-        val imgs: List <String> = itemDish.images
+        val imgs: List<String> = itemDish.images
         val adapter = ViewPagerAdapter(this, imgs)
-        viewPager.adapter =adapter
-
+        binding.viewPager.adapter = adapter
 
 
         //title display
-        detail_title.setText(itemDish.name_fr)
+        binding.detailtitle.setText(itemDish.name_fr)
 
 
         //ingredients display
-        for (i in itemDish.ingredients) detail_text.append(i.name_fr + " ")
+        for (i in itemDish.ingredients) binding.detailtext.append(i.name_fr + " ")
 
         //price display
-        pricedisplay.text = "Total   "+itemDish.prices[0].price+ "€"
+        binding.detailprice.text = "Total   " + itemDish.prices[0].price + "€"
 
-       //quantity display
-        quantitydiplay.text="$quantity"
+        //quantity display
+        binding.quantity.text = "$quantity"
 
 
         //click listener
 
-        buttonplus.setOnClickListener{
+        binding.plus.setOnClickListener {
             quantity++
 
-            val totalprice = (itemDish.prices[0].price.toFloat())*quantity.toFloat()
-            pricedisplay.text = "Total   "+"$totalprice"+ "€"
-            quantitydiplay.text="$quantity"
+            val totalprice = (itemDish.prices[0].price.toFloat()) * quantity.toFloat()
+            binding.detailprice.text = "Total   " + "$totalprice" + "€"
+            binding.quantity.text = "$quantity"
 
 
         }
 
 
-        buttonmoins.setOnClickListener(){
-            if (quantity>1) quantity --
-            else quantity =1
+        binding.moins.setOnClickListener() {
+            if (quantity > 1) quantity--
+            else quantity = 1
 
-            val totalprice :Float = (itemDish.prices[0].price.toFloat())*quantity
-            pricedisplay.text="Total   "+"$totalprice"+ "€"
-            quantitydiplay.text="$quantity"
+            val totalprice: Float = (itemDish.prices[0].price.toFloat()) * quantity
+            binding.detailprice.text = "Total   " + "$totalprice" + "€"
+            binding.quantity.text = "$quantity"
 
 
         }
 
-        pricedisplay.setOnClickListener(){
-            val itemtoadd = DishBasket(itemDish,quantity)
+        binding.detailprice.setOnClickListener() {
+            val itemtoadd = DishBasket(itemDish, quantity)
             val filename = "/basket.json"
-            val file :File = File(cacheDir.absolutePath + filename)
+            val file = File(cacheDir.absolutePath + filename)
+            var quantityalreadyinbasket:Int =0
+            var namealeradyinbasket :String =""
+            var notinbasket:Boolean = false
+            Snackbar.make(it, "Ajouté au panier", Snackbar.LENGTH_LONG).show()
 
-            Snackbar.make(it,"Ajouté au panier", Snackbar.LENGTH_LONG).show()
-            var dishbasket: ArrayList<DishBasket> =ArrayList()
-/*
             if (file.exists()) {
-                dishbasket= Gson().fromJson(file.readText(), List::class.java) as List<DishBasket>
+                var dishbasket = Gson().fromJson(file.readText(), SavedDishInBasket::class.java)
+
+
+                for (item in dishbasket.list) {
+                    if (item.itemdish.name_fr == itemtoadd.itemdish.name_fr) {
+                        quantityalreadyinbasket = itemtoadd.quantity + item.quantity
+                        namealeradyinbasket = item.itemdish.name_fr
+                        notinbasket=false
+                    } else {
+                         notinbasket=true
+                    }
+                }
+
+                if(notinbasket==true) dishbasket.list.add(itemtoadd)
+
+                dishbasket.list.forEach { if (it.itemdish.name_fr== namealeradyinbasket ) it.quantity = quantityalreadyinbasket}
+
+                file.writeText(Gson().toJson(SavedDishInBasket(dishbasket.list)))
+
             }
-*/
-            dishbasket.forEach { if(it.itemdish.name_fr == itemtoadd.itemdish.name_fr) it.quantity += itemtoadd.quantity  }
-
-            dishbasket+=itemtoadd
 
 
-            file.writeText(Gson().toJson(SavedDishInBasket(dishbasket)))
+            else {
+                file.writeText(Gson().toJson(SavedDishInBasket(arrayListOf(itemtoadd))))
+                //}
+                //back button
+
             }
+        }
 
-        //back button
-       back.setOnClickListener {
+        binding.detailback.setOnClickListener {
             finish()
         }
     }

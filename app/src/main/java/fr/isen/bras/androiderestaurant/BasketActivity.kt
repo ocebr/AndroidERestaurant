@@ -8,15 +8,13 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import fr.isen.bras.androiderestaurant.databinding.ActivityBasketBinding
-import fr.isen.bras.androiderestaurant.databinding.ActivityHomeBinding
 import fr.isen.bras.androiderestaurant.model.DishBasket
 import fr.isen.bras.androiderestaurant.model.DishModel
-import fr.isen.bras.androiderestaurant.model.DishResult
 import fr.isen.bras.androiderestaurant.model.SavedDishInBasket
 import java.io.File
 
 
-class BasketActivity : AppCompatActivity() {
+class BasketActivity : AppCompatActivity(), CellClickListener {
 
     private lateinit var binding: ActivityBasketBinding
 
@@ -38,13 +36,9 @@ class BasketActivity : AppCompatActivity() {
 
             val lu = Gson().fromJson(file.readText(), SavedDishInBasket::class.java)
             displayBasket(lu.list)
-            Log.d("panier","$lu")
+
 
         }
-
-
-
-
 
         binding.order.setOnClickListener {
 
@@ -82,7 +76,14 @@ class BasketActivity : AppCompatActivity() {
 
     }
 
+    override fun onCellClickListener(data: DishModel) {
 
+    }
+
+    override fun onCellClickListenerBasket() {
+
+
+    }
 
 
 }

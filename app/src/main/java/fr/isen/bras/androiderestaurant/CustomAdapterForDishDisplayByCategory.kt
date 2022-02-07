@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 
 import android.widget.TextView
+import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.bras.androiderestaurant.model.DishModel
@@ -50,6 +51,7 @@ class CustomAdapterForDishDisplayByCategory(private val mList: List<DishModel>, 
         holder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener(data)
         }
+       holder.itembin.setVisibility(View.INVISIBLE);
 
     }
 
@@ -63,6 +65,7 @@ class CustomAdapterForDishDisplayByCategory(private val mList: List<DishModel>, 
         val itemImage: ImageView = itemView.findViewById(R.id.itemimage)
         val itemText: TextView = itemView.findViewById(R.id.itemtext)
         val itemprice: TextView=itemView.findViewById(R.id.price)
+        val itembin: ImageView =itemView.findViewById(R.id.bin)
 
     }
 

@@ -104,11 +104,9 @@ class SelectedCategoryActivity : MenuActivity(), CellClickListener {
         startActivity(monIntent)
     }
 
-
-
-
-
-
+    override fun onCellClickListenerBasket() {
+        TODO("Not yet implemented")
+    }
 
 
 }

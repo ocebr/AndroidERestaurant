@@ -41,6 +41,8 @@ class CustomAdapterForBasket(private val List: List<DishBasket>) : RecyclerView.
         val totalprice=  dish.itemdish.prices[0].price.toInt() * dish.quantity
         holder.itemText.text = dish.quantity.toString() + " "+ dish.itemdish.name_fr
         holder.itemprice.text = totalprice.toString() +"€"
+
+
     }
 
 
