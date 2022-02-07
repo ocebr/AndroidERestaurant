@@ -59,10 +59,6 @@ class ConnectionActivity : MenuActivity(){
         editor.putString("mail", id)
         editor.apply()
         editor.commit()
-
-
-
-        Log.d("recup file",sharedPreferences.getString("mail","").toString())
     }
 
 }

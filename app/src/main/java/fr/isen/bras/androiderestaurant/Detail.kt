@@ -12,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import fr.isen.bras.androiderestaurant.model.DishBasket
+import fr.isen.bras.androiderestaurant.model.SavedDishInBasket
 import java.io.File
 
 
@@ -86,47 +87,24 @@ class Detail : MenuActivity() {
             val filename = "/basket.json"
             val file :File = File(cacheDir.absolutePath + filename)
 
-
             Snackbar.make(it,"Ajouté au panier", Snackbar.LENGTH_LONG).show()
-            var dishbasket: List<DishBasket> =ArrayList<DishBasket>()
-
+            var dishbasket: ArrayList<DishBasket> =ArrayList()
+/*
             if (file.exists()) {
                 dishbasket= Gson().fromJson(file.readText(), List::class.java) as List<DishBasket>
             }
+*/
+            dishbasket.forEach { if(it.itemdish.name_fr == itemtoadd.itemdish.name_fr) it.quantity += itemtoadd.quantity  }
+
+            dishbasket+=itemtoadd
 
 
-
-            //dishbasket.forEach { if(it.itemdish.name_fr == itemtoadd.itemdish.name_fr) it.quantity += itemtoadd.quantity  }
-
-            //dishbasket+=itemtoadd
-
-
-            file.writeText(Gson().toJson(dishbasket))
-
-            val monIntent : Intent =  Intent(this,BasketActivity::class.java)
-            startActivity(monIntent)
-
+            file.writeText(Gson().toJson(SavedDishInBasket(dishbasket)))
             }
-
-
-
-
-
-
-
-
-
-
 
         //back button
        back.setOnClickListener {
             finish()
         }
-
-
-
-
-
-
     }
 }
