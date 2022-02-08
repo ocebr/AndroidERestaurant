@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso
 import fr.isen.bras.androiderestaurant.model.DishBasket
 
 
-class CustomAdapterForBasket(private val List: List<DishBasket>) : RecyclerView.Adapter<CustomAdapterForBasket.ViewHolder>(){
+class CustomAdapterForBasket(private val List: List<DishBasket>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapterForBasket.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -38,10 +38,14 @@ class CustomAdapterForBasket(private val List: List<DishBasket>) : RecyclerView.
         else{
             holder.itemImage.setImageResource(R.drawable.pizza)
         }
-        val totalprice=  dish.itemdish.prices[0].price.toInt() * dish.quantity
-        holder.itemText.text = dish.quantity.toString() + " "+ dish.itemdish.name_fr
-        holder.itemprice.text = totalprice.toString() +"€"
 
+        val totalprice=  (dish.itemdish.prices[0].price).toFloat()* dish.quantity.toFloat()
+        holder.itemText.text = dish.quantity.toString() + " "+ dish.itemdish.name_fr
+        holder.itemprice.text = totalprice.toString() +" €"
+
+        holder.itemView.setOnClickListener {
+            cellClickListener.onCellClickListenerBasket(dish)
+        }
 
     }
 

@@ -3,6 +3,7 @@ package fr.isen.bras.androiderestaurant
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -98,25 +99,26 @@ class Detail : MenuActivity() {
                         quantityalreadyinbasket = itemtoadd.quantity + item.quantity
                         namealeradyinbasket = item.itemdish.name_fr
                         notinbasket=false
-                    } else {
+                    }
+                    else {
                          notinbasket=true
                     }
                 }
 
+                if(dishbasket.list.size ==0) notinbasket=true
+
+
                 if(notinbasket==true) dishbasket.list.add(itemtoadd)
+
 
                 dishbasket.list.forEach { if (it.itemdish.name_fr== namealeradyinbasket ) it.quantity = quantityalreadyinbasket}
 
                 file.writeText(Gson().toJson(SavedDishInBasket(dishbasket.list)))
-
             }
 
 
             else {
                 file.writeText(Gson().toJson(SavedDishInBasket(arrayListOf(itemtoadd))))
-                //}
-                //back button
-
             }
         }
 

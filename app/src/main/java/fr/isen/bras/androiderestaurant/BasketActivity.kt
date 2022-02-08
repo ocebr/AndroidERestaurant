@@ -69,7 +69,7 @@ class BasketActivity : AppCompatActivity(), CellClickListener {
 
         recyclerview.layoutManager = LinearLayoutManager(this)
 
-        val adapter = CustomAdapterForBasket(dishBasket)
+        val adapter = CustomAdapterForBasket(dishBasket,this)
 
         recyclerview.adapter = adapter
 
@@ -80,7 +80,17 @@ class BasketActivity : AppCompatActivity(), CellClickListener {
 
     }
 
-    override fun onCellClickListenerBasket() {
+    override fun onCellClickListenerBasket(data : DishBasket) {
+        val filename = "/basket.json"
+        val file = File(cacheDir.absolutePath + filename)
+        val lu = Gson().fromJson(file.readText(), SavedDishInBasket::class.java)
+        lu.list.remove(
+            DishBasket(data.itemdish,data.quantity)
+        )
+
+        file.writeText(Gson().toJson(SavedDishInBasket(lu.list)))
+        displayBasket(lu.list)
+
 
 
     }

@@ -13,6 +13,7 @@ import org.json.JSONObject
 
 import android.util.Log
 import com.google.gson.Gson
+import fr.isen.bras.androiderestaurant.model.DishBasket
 import fr.isen.bras.androiderestaurant.model.DishModel
 import fr.isen.bras.androiderestaurant.model.DishResult
 
@@ -26,11 +27,6 @@ class SelectedCategoryActivity : MenuActivity(), CellClickListener {
         binding = ActivitySelectedCategoryBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-
-
-
-
 
         binding.back.setOnClickListener {
             finish()
@@ -104,7 +100,7 @@ class SelectedCategoryActivity : MenuActivity(), CellClickListener {
         startActivity(monIntent)
     }
 
-    override fun onCellClickListenerBasket() {
+    override fun onCellClickListenerBasket(data : DishBasket) {
         TODO("Not yet implemented")
     }
 
