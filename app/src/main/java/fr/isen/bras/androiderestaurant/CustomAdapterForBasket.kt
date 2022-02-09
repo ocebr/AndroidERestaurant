@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.bras.androiderestaurant.model.DishBasket
+import org.w3c.dom.Text
 
 
 class CustomAdapterForBasket(private val List: List<DishBasket>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapterForBasket.ViewHolder>(){
@@ -43,7 +44,7 @@ class CustomAdapterForBasket(private val List: List<DishBasket>, private val cel
         holder.itemText.text = dish.quantity.toString() + " "+ dish.itemdish.name_fr
         holder.itemprice.text = totalprice.toString() +" €"
 
-        holder.itemView.setOnClickListener {
+        holder.itembin.setOnClickListener {
             cellClickListener.onCellClickListenerBasket(dish)
         }
 
@@ -59,6 +60,7 @@ class CustomAdapterForBasket(private val List: List<DishBasket>, private val cel
         val itemImage: ImageView = itemView.findViewById(R.id.itemimage)
         val itemText: TextView = itemView.findViewById(R.id.itemtext)
         val itemprice: TextView=itemView.findViewById(R.id.price)
+        val itembin : ImageView =itemView.findViewById(R.id.bin)
 
     }
 

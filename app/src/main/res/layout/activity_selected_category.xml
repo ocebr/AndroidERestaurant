@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/calligraffitti"
+        android:fontFamily="@font/aubrey"
         android:text="Tu es sur la deuxieme activity"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerview"

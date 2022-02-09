@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/drawable/badge_background.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_basket.xml" value="0.4" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_connection.xml" value="0.4" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_detail.xml" value="0.264" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_home.xml" value="0.4" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_menu.xml" value="0.21331521739130435" />
+        <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_order.xml" value="0.264" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_selected_category.xml" value="0.4" />
+        <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/badge_item_cart.xml" value="0.20969202898550723" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/card_view_design.xml" value="0.536" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/dish_detail_activity.xml" value="0.2421875" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/fragment_blank.xml" value="0.2476107732406603" />
+        <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/fragment_user_already_connected.xml" value="0.4" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/image_ressource_file.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/login_fragment.xml" value="0.4" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/main_menu.xml" value="0.20878623188405798" />

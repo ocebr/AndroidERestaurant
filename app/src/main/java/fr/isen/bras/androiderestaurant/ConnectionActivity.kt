@@ -1,10 +1,12 @@
 package fr.isen.bras.androiderestaurant
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -35,7 +37,8 @@ class ConnectionActivity : MenuActivity(){
         if(id_user!=""){
             val fragmentManager: FragmentManager = supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView,BlankFragment()).commit()
+            fragmentTransaction.replace(R.id.fragmentContainerView,UserAlreadyConnectedFragment()).commit()
+
         }
 
     }
@@ -60,5 +63,19 @@ class ConnectionActivity : MenuActivity(){
         editor.apply()
         editor.commit()
     }
+    fun redirectToOrder(){
+        val monIntent : Intent =  Intent(this,OrderActivity::class.java)
+        startActivity(monIntent)
+
+    }
+
+    fun getUserId() :String{
+        val id_user = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("mail","").toString()
+        return id_user
+    }
+
+
+
+
 
 }

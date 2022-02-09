@@ -21,7 +21,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aubrey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -40,7 +41,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aubrey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="96dp"
         android:contextClickable="true"
+        android:fontFamily="@font/aubrey"
         android:text="Je n'ai pas de compte, je veux en créer un"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:fontFamily="@font/calligraffitti"
+        android:fontFamily="@font/aubrey"
         android:text="Connecte toi !"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +76,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/aubrey"
         android:text="Valider"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/donthaveaccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

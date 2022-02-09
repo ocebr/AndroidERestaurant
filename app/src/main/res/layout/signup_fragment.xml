@@ -21,7 +21,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aubrey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,7 +42,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aubrey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +62,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aubrey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +83,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aubrey" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,12 +104,10 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aubrey" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
 
     <TextView
@@ -114,6 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:contextClickable="true"
+        android:fontFamily="@font/aubrey"
         android:text="J'ai déjà un compte, je me connecte"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +127,7 @@
         android:id="@+id/titleinscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/calligraffitti"
+        android:fontFamily="@font/aubrey"
         android:text="Inscris toi !"
         android:textSize="48sp"
 
@@ -138,7 +141,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/aubrey"
         android:text="Enregistrer"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

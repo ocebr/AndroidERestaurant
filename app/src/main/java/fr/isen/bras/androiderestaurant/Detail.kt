@@ -88,7 +88,7 @@ class Detail : MenuActivity() {
             var quantityalreadyinbasket:Int =0
             var namealeradyinbasket :String =""
             var notinbasket:Boolean = false
-            Snackbar.make(it, "Ajouté au panier", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(view, "Ajouté au panier", Snackbar.LENGTH_LONG).show()
 
             if (file.exists()) {
                 var dishbasket = Gson().fromJson(file.readText(), SavedDishInBasket::class.java)

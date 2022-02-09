@@ -11,32 +11,32 @@
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/calligraffitti"
+        android:layout_marginTop="250dp"
+        android:fontFamily="@font/holtwood_one_sc"
         android:text="Food lover"
         android:textSize="34sp"
-        tools:viewBindingIgnore="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.579"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/food" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:viewBindingIgnore="true" />
 
     <ImageView
         android:id="@+id/food"
         android:layout_width="416dp"
         android:layout_height="269dp"
+        app:layout_constraintBottom_toTopOf="@+id/Title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/italian_food" />
 
     <TextView
         android:id="@+id/starters"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/calligraffitti"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/holtwood_one_sc"
         android:text="Entrées"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
 
-        android:fontFamily="@font/calligraffitti"
+        android:fontFamily="@font/holtwood_one_sc"
         android:text="Plats"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
 
-        android:fontFamily="@font/calligraffitti"
+        android:fontFamily="@font/holtwood_one_sc"
         android:text="Desserts"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

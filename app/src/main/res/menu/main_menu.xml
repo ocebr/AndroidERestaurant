@@ -2,15 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
         android:id="@+id/profil"
         android:icon="@drawable/user"
         android:title="Profil"
         app:showAsAction="always" />
     <item
-        android:id="@+id/basket"
+        android:id="@+id/cart"
         android:icon="@drawable/panier"
-        android:title="Basket"
+        android:title="panier"
         app:showAsAction="always" />
+
 
 </menu>

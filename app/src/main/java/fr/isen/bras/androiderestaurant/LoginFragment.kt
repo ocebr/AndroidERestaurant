@@ -13,6 +13,7 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import fr.isen.bras.androiderestaurant.databinding.LoginFragmentBinding
 import fr.isen.bras.androiderestaurant.model.DishResult
@@ -68,11 +69,17 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
             Request.Method.POST, url, jsonObject,
             { response ->
                 val gson = Gson()
-                val id = gson.fromJson(response.toString(), LoginResult::class.java)
-                Log.d("identifiant","$id")
+                val httpanswer = gson.fromJson(response.toString(), LoginResult::class.java)
 
-                Log.d("", "$response")
-                (activity as ConnectionActivity)?.saveId(id.data.email)
+                //save user id into shared preferences
+                (activity as ConnectionActivity)?.saveId(httpanswer.data.email)
+
+                if(httpanswer.code=="200")  {
+                    (activity as ConnectionActivity)?.redirectToOrder()
+                    Snackbar.make(requireView(), "Connecté en tant que ${httpanswer.data.email}", Snackbar.LENGTH_LONG).show()
+                }
+
+
 
             }, {
                 // Error in request
