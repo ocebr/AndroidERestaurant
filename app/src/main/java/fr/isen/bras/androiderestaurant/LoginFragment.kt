@@ -68,15 +68,15 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
             { response ->
-                val gson = Gson()
-                val httpanswer = gson.fromJson(response.toString(), LoginResult::class.java)
+
+                val httpanswer = Gson().fromJson(response.toString(), LoginResult::class.java)
 
                 //save user id into shared preferences
-                (activity as ConnectionActivity)?.saveId(httpanswer.data.email)
+                (activity as ConnectionActivity)?.saveId(httpanswer.data.id,httpanswer.data.firstname,httpanswer.data.lastname)
 
                 if(httpanswer.code=="200")  {
                     (activity as ConnectionActivity)?.redirectToOrder()
-                    Snackbar.make(requireView(), "Connecté en tant que ${httpanswer.data.email}", Snackbar.LENGTH_LONG).show()
+
                 }
 
 

@@ -17,8 +17,11 @@ import fr.isen.bras.androiderestaurant.model.SavedDishInBasket
 import org.json.JSONObject
 import java.io.File
 import android.content.Intent
-
-
+import android.os.Handler
+import android.os.Looper
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import fr.isen.bras.androiderestaurant.model.OrderResult
 
 
 class OrderActivity : MenuActivity() {
@@ -31,13 +34,17 @@ class OrderActivity : MenuActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.backhome.setOnClickListener{
-            val intent = Intent(applicationContext, HomeActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            intent.putExtra("EXIT", true)
-            startActivity(intent)
-        }
-        orderFood()
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainerView,OrderLoadingFragment()).commit()
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            orderFood()
+        }, 2000)
+
+
+
 
 
 
@@ -47,21 +54,30 @@ class OrderActivity : MenuActivity() {
 
 
         val queue = Volley.newRequestQueue(this)
-        val url = "http://test.api.catering.bluecodegames.com/user/order\n"
+        val url = "http://test.api.catering.bluecodegames.com/user/order"
         val jsonObject = JSONObject()
-        val id_user = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("mail","").toString()
+        val id_user = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("id_user","").toString()
         val filename = "/basket.json"
         val file = File(cacheDir.absolutePath + filename)
         var dishbasket = Gson().fromJson(file.readText(), SavedDishInBasket::class.java)
 
         jsonObject.put("id_shop", "1")
-        jsonObject.put("mail",id_user)
-        jsonObject.put("msg",dishbasket)
+        jsonObject.put("id_user",id_user)
+        jsonObject.put("msg",Gson().toJson(dishbasket.list))
+        Log.d("","${jsonObject}")
 
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
             { response ->
-              Log.d("response commande","$response")
+              Log.d("","$response")
+
+                val httpanswer = Gson().fromJson(response.toString(), OrderResult::class.java)
+                if(httpanswer.code=="200")  {
+                    changeToOrderSuccessedFragment()
+
+
+                }
+
 
 
 
@@ -81,6 +97,22 @@ class OrderActivity : MenuActivity() {
 
         queue.add(request)
 
+
+
+    }
+
+    fun changeToOrderSuccessedFragment(){
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainerView,OrderSuccessedFragment()).commit()
+
+    }
+    fun backHome(){
+
+        val intent = Intent(applicationContext, HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        intent.putExtra("EXIT", true)
+        startActivity(intent)
 
 
     }

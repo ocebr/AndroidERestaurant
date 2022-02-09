@@ -37,7 +37,10 @@ class UserAlreadyConnectedFragment : Fragment (R.layout.login_fragment){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.fragmenttitle.setText("Vous êtes connectés en tant que : "+(activity as ConnectionActivity)?.getUserId()+". Voulez vous continuer avec ce compte ?")
+        val name = (activity as ConnectionActivity)?.getUser()
+
+
+        binding.fragmenttitle.setText("Vous êtes connectés en tant que : "+"$name"+". Voulez vous continuer avec ce compte ?")
         binding.no.setOnClickListener{
             (activity as ConnectionActivity)?.changeFragmentToLogin()
         }

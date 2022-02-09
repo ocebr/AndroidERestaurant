@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import fr.isen.bras.androiderestaurant.databinding.ActivityConnectionBinding
+import fr.isen.bras.androiderestaurant.model.Identifiant
 import fr.isen.bras.androiderestaurant.model.LoginResult
 
 
@@ -56,23 +57,33 @@ class ConnectionActivity : MenuActivity(){
         fragmentTransaction.replace(R.id.fragmentContainerView,SignUpFragment()).commit()
     }
 
-    fun saveId (id : String){
+    fun saveId (id : String, firstname : String, lastname: String){
         val sharedPreferences = getSharedPreferences("IdSaving", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.putString("mail", id)
+        editor.putString("id_user", id)
+        editor.putString("firstname", firstname)
+        editor.putString("lastname", lastname)
         editor.apply()
         editor.commit()
     }
     fun redirectToOrder(){
-        val monIntent : Intent =  Intent(this,OrderActivity::class.java)
+        val monIntent =  Intent(this,OrderActivity::class.java)
         startActivity(monIntent)
 
     }
 
-    fun getUserId() :String{
-        val id_user = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("mail","").toString()
-        return id_user
+    fun getUser() : String{
+
+        var lastname = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("lastname","").toString()
+
+        var firstname  = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("firstname","").toString()
+
+        var name = "$lastname"+ " $firstname"
+
+        return name
     }
+
+
 
 
 
