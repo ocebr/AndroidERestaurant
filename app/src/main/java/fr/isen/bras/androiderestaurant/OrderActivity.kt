@@ -21,6 +21,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import fr.isen.bras.androiderestaurant.model.DishBasket
 import fr.isen.bras.androiderestaurant.model.OrderResult
 
 
@@ -73,7 +74,10 @@ class OrderActivity : MenuActivity() {
 
                 val httpanswer = Gson().fromJson(response.toString(), OrderResult::class.java)
                 if(httpanswer.code=="200")  {
+                    var emptyBasket: ArrayList<DishBasket> = ArrayList()
+                    file.writeText(Gson().toJson(SavedDishInBasket(emptyBasket)))
                     changeToOrderSuccessedFragment()
+
 
 
                 }

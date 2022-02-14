@@ -31,7 +31,7 @@ open class MenuActivity : AppCompatActivity() {
                 true
             }
             R.id.profil -> {
-                val monIntent : Intent =  Intent(this,ConnectionActivity::class.java)
+                val monIntent : Intent =  Intent(this,UserPreviousOrdersActivity::class.java)
                 startActivity(monIntent)
                 true
             }

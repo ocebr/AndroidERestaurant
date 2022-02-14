@@ -8,7 +8,8 @@ interface CellClickListener {
 
 
     fun onCellClickListener( data: DishModel)
-    fun onCellClickListenerBasket(data : DishBasket)
+    fun onCellClickListenerBasketRemove(data : DishBasket)
+    fun onCellClickListenerBasketPlusOrMinus(data: DishBasket, value: String)
 
 
 }

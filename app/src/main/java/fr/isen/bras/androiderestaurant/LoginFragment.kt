@@ -2,7 +2,10 @@ package fr.isen.bras.androiderestaurant
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -41,14 +44,26 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
         }
         binding.valider.setOnClickListener(){
             val mail = binding.adressemailconnect.editText?.text.toString()
-            val mdp = binding.motdepasseconnect.editText?.text.toString()
+            val mdp = binding.pwd.text.toString()
 
-            if(isInputValid(mdp)  && isEmailValid(mail)) {
+            if(isPasswordValid(mdp)  && isEmailValid(mail)) {
                 connect( mail, mdp)
-
             }
             else{
+                if(!isPasswordValid(mdp)) binding.pwd.setTextColor(Color.RED)
+                if(!isEmailValid(mail)) binding.adressemailconnect.setBackgroundColor(Color.RED)
+
                 Toast.makeText(context, "Champs invalides", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        binding.showhide.setOnClickListener {
+            if(binding.showhide.text.toString().equals("Montrer")){
+                binding.pwd.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                binding.showhide.text = "Cacher"
+            } else{
+                binding.pwd.transformationMethod = PasswordTransformationMethod.getInstance()
+                binding.showhide.text = "Montrer"
             }
         }
     }
@@ -105,8 +120,8 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
     fun isEmailValid(mail: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()
     }
-    fun isInputValid(name: String) :Boolean {
-        return name.length > 8
+    fun isPasswordValid(name: String) :Boolean {
+        return name.length >= 6
 
     }
 

@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ordertitle"
+        app:layout_constraintTop_toBottomOf="@+id/previousorder"
         app:layout_constraintVertical_bias="0.137"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
@@ -23,18 +23,19 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/ordertitle"
+        android:id="@+id/previousorder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="96dp"
         android:fontFamily="@font/aubrey"
-        android:text="Votre commande est en route !"
 
+        android:text="Votre commande est en route !"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodlover" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/orderdetail"
@@ -48,13 +49,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ordertitle" />
+        app:layout_constraintTop_toBottomOf="@+id/previousorder" />
 
     <TextView
         android:id="@+id/backhome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="56dp"
         android:fontFamily="@font/aubrey"
         android:text="Retourner à l'accueil"
         android:textSize="20sp"
@@ -62,24 +63,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/foodlover"
-        style="@style/Widget.AppCompat.TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/holtwood_one_sc"
-        android:singleLine="true"
-        android:soundEffectsEnabled="true"
-        android:text="FOOD LOVER"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

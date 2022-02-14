@@ -9,11 +9,13 @@
         android:fontFamily="@font/holtwood_one_sc"
         android:icon="@color/design_default_color_background"
         android:label="FOOD LOVER"
-
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".UserPreviousOrdersActivity"
+            android:exported="false" />
         <activity
             android:name=".OrderActivity"
             android:exported="false" />

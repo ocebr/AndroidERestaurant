@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 
 import android.widget.TextView
-import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.bras.androiderestaurant.model.DishModel
@@ -20,7 +19,7 @@ class CustomAdapterForDishDisplayByCategory(private val mList: List<DishModel>, 
         // inflates the card_view_design view
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_view_design, parent, false)
+            .inflate(R.layout.recycler_view_item, parent, false)
 
         return ViewHolder(view)
     }
@@ -51,8 +50,10 @@ class CustomAdapterForDishDisplayByCategory(private val mList: List<DishModel>, 
         holder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener(data)
         }
-       holder.itembin.setVisibility(View.INVISIBLE);
 
+        holder.itembin.setVisibility(View.INVISIBLE)
+        holder.itemmoins.setVisibility(View.INVISIBLE)
+        holder.itemplus.setVisibility(View.INVISIBLE)
     }
 
     // return the number of the items in the list
@@ -63,10 +64,11 @@ class CustomAdapterForDishDisplayByCategory(private val mList: List<DishModel>, 
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val itemImage: ImageView = itemView.findViewById(R.id.itemimage)
-        val itemText: TextView = itemView.findViewById(R.id.itemtext)
+        val itemText: TextView = itemView.findViewById(R.id.previousorder)
         val itemprice: TextView=itemView.findViewById(R.id.price)
         val itembin: ImageView =itemView.findViewById(R.id.bin)
-
+        val itemplus: ImageView =itemView.findViewById(R.id.basketplus)
+        val itemmoins: ImageView =itemView.findViewById(R.id.basketmoins)
     }
 
 

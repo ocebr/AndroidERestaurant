@@ -100,9 +100,15 @@ class SelectedCategoryActivity : MenuActivity(), CellClickListener {
         startActivity(monIntent)
     }
 
-    override fun onCellClickListenerBasket(data : DishBasket) {
+    override fun onCellClickListenerBasketRemove(data: DishBasket) {
         TODO("Not yet implemented")
     }
+
+    override fun onCellClickListenerBasketPlusOrMinus(data: DishBasket, value: String) {
+        TODO("Not yet implemented")
+    }
+
+
 
 
 }
