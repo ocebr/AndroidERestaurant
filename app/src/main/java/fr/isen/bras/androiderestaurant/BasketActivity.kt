@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
@@ -26,24 +25,20 @@ class BasketActivity : AppCompatActivity(), CellClickListener {
         val view = binding.root
         setContentView(view)
 
-
-
         val filename = "/basket.json"
         val file = File(cacheDir.absolutePath + filename)
-
-
         val lu = Gson().fromJson(file.readText(), SavedDishInBasket::class.java)
         if(lu.list.size ==0) binding.order.setVisibility(View.INVISIBLE)
+
         displayBasket(lu.list)
-
-
+        getTotalPrice(lu)
+        getItemCount(lu)
 
         binding.order.setOnClickListener {
 
             val id_user =
                 getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("mail", "")
                     .toString()
-
             if (id_user != "") {
                 val monIntent= Intent(this, ConnectionActivity::class.java)
                 monIntent.putExtra("id_user", id_user)
@@ -51,13 +46,9 @@ class BasketActivity : AppCompatActivity(), CellClickListener {
             } else {
                 val monIntent= Intent(this, ConnectionActivity::class.java)
                 startActivity(monIntent)
-
             }
-
-
         }
-        getTotalPrice(lu)
-        getItemCount(lu)
+
         binding.back.setOnClickListener {
             finish()
         }
@@ -72,12 +63,9 @@ class BasketActivity : AppCompatActivity(), CellClickListener {
         val adapter = CustomAdapterForBasket(dishBasket,this)
 
         recyclerview.adapter = adapter
-
-
     }
 
     override fun onCellClickListener(data: DishModel) {
-
     }
 
     override fun onCellClickListenerBasketRemove(data: DishBasket) {

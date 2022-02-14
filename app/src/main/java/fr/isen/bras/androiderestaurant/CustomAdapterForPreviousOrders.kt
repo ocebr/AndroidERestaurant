@@ -1,20 +1,17 @@
 package fr.isen.bras.androiderestaurant
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
-import fr.isen.bras.androiderestaurant.model.DishBasket
-import fr.isen.bras.androiderestaurant.model.Order
-import fr.isen.bras.androiderestaurant.model.PreviousOrdersResult
+import fr.isen.bras.androiderestaurant.model.OrderResults
 
 
-class CustomAdapterForPreviousOrders(private val List: List <Order>) : RecyclerView.Adapter<CustomAdapterForPreviousOrders.ViewHolder>(){
+
+class CustomAdapterForPreviousOrders(private val List: List <OrderResults>) : RecyclerView.Adapter<CustomAdapterForPreviousOrders.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -28,12 +25,14 @@ class CustomAdapterForPreviousOrders(private val List: List <Order>) : RecyclerV
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val orders = List[position]
-        var orderPrice :Float = 0F
-        orders.message.forEach { orderPrice+= it.quantity.toFloat() *it.itemdish.prices[0].price.toFloat()}
+        var orderPrice = 0F
+        Log.d("njre","$orders")
+        orders.messageList.forEach { orderPrice+= it.quantity.toFloat() *it.itemdish.prices[0].price.toFloat()}
 
-        holder.price.setText(orderPrice.toString())
+        holder.price.setText(orderPrice.toString()+" €")
+        holder.title.setText(orders.receiver)
 
-
+        orders.messageList.forEach { holder.detail.append(it.itemdish.name_fr + " :  " + it.quantity +" \n") }
 
     }
 
@@ -47,6 +46,7 @@ class CustomAdapterForPreviousOrders(private val List: List <Order>) : RecyclerV
 
         val title: TextView = itemView.findViewById(R.id.previousorder)
         val price: TextView=itemView.findViewById(R.id.price)
+        val detail: TextView= itemView.findViewById(R.id.previousorderdetail)
 
 
     }

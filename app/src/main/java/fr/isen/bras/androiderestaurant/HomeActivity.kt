@@ -1,15 +1,9 @@
 package fr.isen.bras.androiderestaurant
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import fr.isen.bras.androiderestaurant.databinding.ActivityHomeBinding
 
 class HomeActivity : MenuActivity() {
@@ -22,11 +16,9 @@ class HomeActivity : MenuActivity() {
         val view = binding.root
         setContentView(view)
 
-
         val tvStarter = binding.starters
         val tvMainCourse = binding.Maincourse
         val tvDesserts = binding.Desserts
-
 
         // set on-click listener
         tvStarter.setOnClickListener {
@@ -54,31 +46,14 @@ class HomeActivity : MenuActivity() {
             //Log.w("home activity", "je suis passé par ici")
             Log.i("info","end of Home Activity")
             changeActivityWithCategory(str)
-
-
         }
-
-
-
-        }
-
-
+    }
     private fun changeActivityWithCategory(str : String) {
-
 
         val monIntent : Intent =  Intent(this,SelectedCategoryActivity::class.java)
         monIntent.putExtra("selectedCategory", str)
         startActivity(monIntent)
-
-
     }
-
-
-
-
-
-
-
-    }
+}
 
 

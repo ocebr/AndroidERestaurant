@@ -48,7 +48,7 @@ class Detail : MenuActivity() {
 
 
         //ingredients display
-        for (i in itemDish.ingredients) binding.detailtext.append(i.name_fr + " ")
+        for (i in itemDish.ingredients) binding.detailtext.append(i.name_fr + " \n")
 
         //price display
         binding.detailprice.text = "Total   " + itemDish.prices[0].price + "€"

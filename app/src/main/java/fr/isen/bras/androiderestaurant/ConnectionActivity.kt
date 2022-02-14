@@ -2,18 +2,11 @@ package fr.isen.bras.androiderestaurant
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.snackbar.Snackbar
 import fr.isen.bras.androiderestaurant.databinding.ActivityConnectionBinding
-import fr.isen.bras.androiderestaurant.model.Identifiant
-import fr.isen.bras.androiderestaurant.model.LoginResult
+
 
 
 class ConnectionActivity : MenuActivity(){
@@ -24,7 +17,6 @@ class ConnectionActivity : MenuActivity(){
         binding = ActivityConnectionBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
 
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()

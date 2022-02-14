@@ -10,6 +10,7 @@
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_home.xml" value="0.4" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_menu.xml" value="0.21331521739130435" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_order.xml" value="0.264" />
+        <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_previous_order_detail.xml" value="0.23324275362318841" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_selected_category.xml" value="0.4" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/activity_user_previous_orders.xml" value="0.2421875" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/badge_item_cart.xml" value="0.20969202898550723" />
@@ -24,8 +25,9 @@
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/main_menu.xml" value="0.20878623188405798" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/network_security_config.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/recycler_view_item.xml" value="0.536" />
-        <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/recycler_view_orders.xml" value="0.2421875" />
+        <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/recycler_view_orders.xml" value="0.4" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/signup_fragment.xml" value="0.4" />
+        <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/menu/cart_count.xml" value="0.2421875" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/menu/main_menu.xml" value="0.2421875" />
       </map>
     </option>
