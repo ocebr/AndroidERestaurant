@@ -1,4 +1,5 @@
 package fr.isen.bras.androiderestaurant
+import fr.isen.bras.androiderestaurant.model.OrderResults
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -7,9 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.bras.androiderestaurant.model.OrderResults
-
-
 
 class CustomAdapterForPreviousOrders(private val List: List <OrderResults>) : RecyclerView.Adapter<CustomAdapterForPreviousOrders.ViewHolder>(){
 
@@ -20,7 +18,6 @@ class CustomAdapterForPreviousOrders(private val List: List <OrderResults>) : Re
 
         return ViewHolder(view)
     }
-
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
@@ -35,24 +32,15 @@ class CustomAdapterForPreviousOrders(private val List: List <OrderResults>) : Re
         orders.messageList.forEach { holder.detail.append(it.itemdish.name_fr + " :  " + it.quantity +" \n") }
 
     }
-
-
     override fun getItemCount(): Int {
         return List.size
     }
-
-
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
 
         val title: TextView = itemView.findViewById(R.id.previousorder)
         val price: TextView=itemView.findViewById(R.id.price)
         val detail: TextView= itemView.findViewById(R.id.previousorderdetail)
-
-
     }
-
-
-
 }
 
 

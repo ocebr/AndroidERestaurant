@@ -13,9 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".PreviousOrderDetailActivity"
-            android:exported="false" />
+
         <activity
             android:name=".UserPreviousOrdersActivity"
             android:exported="false" />

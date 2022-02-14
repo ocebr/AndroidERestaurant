@@ -1,4 +1,8 @@
 package fr.isen.bras.androiderestaurant
+import fr.isen.bras.androiderestaurant.databinding.ActivityBasketBinding
+import fr.isen.bras.androiderestaurant.model.DishBasket
+import fr.isen.bras.androiderestaurant.model.DishModel
+import fr.isen.bras.androiderestaurant.model.SavedDishInBasket
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,10 +12,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
-import fr.isen.bras.androiderestaurant.databinding.ActivityBasketBinding
-import fr.isen.bras.androiderestaurant.model.DishBasket
-import fr.isen.bras.androiderestaurant.model.DishModel
-import fr.isen.bras.androiderestaurant.model.SavedDishInBasket
 import java.io.File
 
 
@@ -53,15 +53,11 @@ class BasketActivity : AppCompatActivity(), CellClickListener {
             finish()
         }
     }
-
     private fun displayBasket(dishBasket: ArrayList<DishBasket>) {
 
         val recyclerview = binding.listinbasket
-
         recyclerview.layoutManager = LinearLayoutManager(this)
-
         val adapter = CustomAdapterForBasket(dishBasket,this)
-
         recyclerview.adapter = adapter
     }
 
@@ -82,7 +78,6 @@ class BasketActivity : AppCompatActivity(), CellClickListener {
         if(lu.list.size ==0) binding.order.setVisibility(View.INVISIBLE)
 
 }
-
     override fun onCellClickListenerBasketPlusOrMinus(data: DishBasket, value: String) {
         if(value =="plus") {
             val filename = "/basket.json"
@@ -128,7 +123,4 @@ class BasketActivity : AppCompatActivity(), CellClickListener {
         lu.list.forEach { totalcount+= it.quantity }
         binding.baskettitle.setText("Votre panier : "+ totalcount.toString())
     }
-
-
-
 }

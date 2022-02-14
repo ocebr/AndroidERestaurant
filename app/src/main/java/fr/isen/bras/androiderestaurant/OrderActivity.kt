@@ -1,19 +1,17 @@
 package fr.isen.bras.androiderestaurant
+import fr.isen.bras.androiderestaurant.databinding.ActivityOrderBinding
+import fr.isen.bras.androiderestaurant.model.SavedDishInBasket
+import fr.isen.bras.androiderestaurant.model.DishBasket
+import fr.isen.bras.androiderestaurant.model.OrderResult
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
-import fr.isen.bras.androiderestaurant.databinding.ActivityOrderBinding
-import fr.isen.bras.androiderestaurant.databinding.ActivitySelectedCategoryBinding
-import fr.isen.bras.androiderestaurant.model.LoginResult
-import fr.isen.bras.androiderestaurant.model.SavedDishInBasket
 import org.json.JSONObject
 import java.io.File
 import android.content.Intent
@@ -21,8 +19,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import fr.isen.bras.androiderestaurant.model.DishBasket
-import fr.isen.bras.androiderestaurant.model.OrderResult
+
 
 
 class OrderActivity : MenuActivity() {
@@ -43,16 +40,8 @@ class OrderActivity : MenuActivity() {
         handler.postDelayed({
             orderFood()
         }, 2000)
-
-
-
-
-
-
     }
-
     private fun orderFood(){
-
 
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/user/order"
@@ -65,7 +54,6 @@ class OrderActivity : MenuActivity() {
         jsonObject.put("id_shop", "1")
         jsonObject.put("id_user",id_user)
         jsonObject.put("msg",Gson().toJson(dishbasket.list))
-        Log.d("","${jsonObject}")
 
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
@@ -77,18 +65,9 @@ class OrderActivity : MenuActivity() {
                     var emptyBasket: ArrayList<DishBasket> = ArrayList()
                     file.writeText(Gson().toJson(SavedDishInBasket(emptyBasket)))
                     changeToOrderSuccessedFragment()
-
-
-
                 }
-
-
-
-
-
-
-
-            }, {
+            },
+            {
                 // Error in request
                 Log.i("","Volley error: $it")
             })
@@ -98,18 +77,13 @@ class OrderActivity : MenuActivity() {
             0,
             1f
         )
-
         queue.add(request)
-
-
-
     }
 
     fun changeToOrderSuccessedFragment(){
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainerView,OrderSuccessedFragment()).commit()
-
     }
     fun backHome(){
 
@@ -117,7 +91,5 @@ class OrderActivity : MenuActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         intent.putExtra("EXIT", true)
         startActivity(intent)
-
-
     }
 }

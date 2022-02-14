@@ -1,17 +1,17 @@
 package fr.isen.bras.androiderestaurant
+import fr.isen.bras.androiderestaurant.model.DishModel
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import fr.isen.bras.androiderestaurant.model.DishModel
 
 
-class CustomAdapterForDishDisplayByCategory(private val mList: List<DishModel>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapterForDishDisplayByCategory.ViewHolder>(){
+
+class CustomAdapterForDishDisplayByCategory(private val mList: List<DishModel>, private val cellClickListener : CellClickListener) : RecyclerView.Adapter<CustomAdapterForDishDisplayByCategory.ViewHolder>() {
 
 
     // create new views
@@ -29,49 +29,39 @@ class CustomAdapterForDishDisplayByCategory(private val mList: List<DishModel>, 
 
         val dish = mList[position]
 
-        if(dish.images[0]!="") {
+        if (dish.images[0] != "") {
             Picasso.get()
                 .load(dish.images[0])
                 .error(R.drawable.pizza)
                 .into(holder.itemImage)
 
 
-
-        }
-        else{
+        } else {
             holder.itemImage.setImageResource(R.drawable.pizza)
         }
-
         holder.itemText.text = dish.name_fr
-        holder.itemprice.text = dish.prices[0].price+"€"
-
-
+        holder.itemprice.text = dish.prices[0].price + "€"
         val data = mList[position]
         holder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener(data)
         }
-
         holder.itembin.setVisibility(View.INVISIBLE)
         holder.itemmoins.setVisibility(View.INVISIBLE)
         holder.itemplus.setVisibility(View.INVISIBLE)
     }
 
-    // return the number of the items in the list
+
     override fun getItemCount(): Int {
         return mList.size
     }
 
-    // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val itemImage: ImageView = itemView.findViewById(R.id.itemimage)
         val itemText: TextView = itemView.findViewById(R.id.previousorder)
-        val itemprice: TextView=itemView.findViewById(R.id.price)
-        val itembin: ImageView =itemView.findViewById(R.id.bin)
-        val itemplus: ImageView =itemView.findViewById(R.id.basketplus)
-        val itemmoins: ImageView =itemView.findViewById(R.id.basketmoins)
+        val itemprice: TextView = itemView.findViewById(R.id.price)
+        val itembin: ImageView = itemView.findViewById(R.id.bin)
+        val itemplus: ImageView = itemView.findViewById(R.id.basketplus)
+        val itemmoins: ImageView = itemView.findViewById(R.id.basketmoins)
     }
-
-
-
 }
 

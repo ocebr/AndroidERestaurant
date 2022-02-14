@@ -1,13 +1,11 @@
 package fr.isen.bras.androiderestaurant
+import fr.isen.bras.androiderestaurant.databinding.ActivityConnectionBinding
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import fr.isen.bras.androiderestaurant.databinding.ActivityConnectionBinding
-
-
 
 class ConnectionActivity : MenuActivity(){
 
@@ -31,9 +29,7 @@ class ConnectionActivity : MenuActivity(){
             val fragmentManager: FragmentManager = supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragmentContainerView,UserAlreadyConnectedFragment()).commit()
-
         }
-
     }
 
     fun changeFragmentToLogin(){
@@ -58,6 +54,7 @@ class ConnectionActivity : MenuActivity(){
         editor.apply()
         editor.commit()
     }
+
     fun redirectToOrder(){
         val monIntent =  Intent(this,OrderActivity::class.java)
         startActivity(monIntent)
@@ -67,18 +64,8 @@ class ConnectionActivity : MenuActivity(){
     fun getUser() : String{
 
         var lastname = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("lastname","").toString()
-
         var firstname  = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("firstname","").toString()
-
         var name = "$lastname"+ " $firstname"
-
         return name
     }
-
-
-
-
-
-
-
 }

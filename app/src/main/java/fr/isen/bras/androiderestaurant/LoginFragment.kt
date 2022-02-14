@@ -1,7 +1,7 @@
 package fr.isen.bras.androiderestaurant
+import fr.isen.bras.androiderestaurant.databinding.LoginFragmentBinding
+import fr.isen.bras.androiderestaurant.model.LoginResult
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
@@ -16,12 +16,7 @@ import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
-import fr.isen.bras.androiderestaurant.databinding.LoginFragmentBinding
-import fr.isen.bras.androiderestaurant.model.DishResult
-import fr.isen.bras.androiderestaurant.model.Identifiant
-import fr.isen.bras.androiderestaurant.model.LoginResult
 import org.json.JSONObject
 
 
@@ -29,14 +24,11 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
 
     private lateinit var binding: LoginFragmentBinding
 
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = LoginFragmentBinding.inflate(layoutInflater,container, false)
 
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.donthaveaccount.setOnClickListener(){
@@ -56,7 +48,6 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
                 Toast.makeText(context, "Champs invalides", Toast.LENGTH_LONG).show()
             }
         }
-
         binding.showhide.setOnClickListener {
             if(binding.showhide.text.toString().equals("Montrer")){
                 binding.pwd.transformationMethod = HideReturnsTransformationMethod.getInstance()
@@ -68,9 +59,7 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
         }
     }
 
-
     private fun connect( mail: String, mdp : String){
-
 
         val queue = Volley.newRequestQueue(context)
         val url = "http://test.api.catering.bluecodegames.com/user/login"
@@ -85,23 +74,15 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
             { response ->
 
                 val httpanswer = Gson().fromJson(response.toString(), LoginResult::class.java)
-
                 //save user id into shared preferences
                 (activity as ConnectionActivity)?.saveId(httpanswer.data.id,httpanswer.data.firstname,httpanswer.data.lastname)
-
                 if(httpanswer.code=="200")  {
                     (activity as ConnectionActivity)?.redirectToOrder()
-
                 }
-
-
-
-            }, {
-                // Error in request
+            },
+            {
                 Log.i("","Volley error: $it")
             })
-
-
         // Volley request policy, only one time request to avoid duplicate transaction
         request.retryPolicy = DefaultRetryPolicy(
             DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
@@ -111,18 +92,11 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
         )
         // Add the volley post request to the request queue
         queue.add(request)
-
-
-
     }
-
-
     fun isEmailValid(mail: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()
     }
     fun isPasswordValid(name: String) :Boolean {
         return name.length >= 6
-
     }
-
 }

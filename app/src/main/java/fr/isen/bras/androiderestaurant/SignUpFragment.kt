@@ -1,10 +1,9 @@
 package fr.isen.bras.androiderestaurant
+import fr.isen.bras.androiderestaurant.databinding.SignupFragmentBinding
+import fr.isen.bras.androiderestaurant.model.LoginResult
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
@@ -12,29 +11,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.motion.widget.TransitionBuilder.validate
 import androidx.fragment.app.Fragment
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
-import fr.isen.bras.androiderestaurant.databinding.SignupFragmentBinding
-import fr.isen.bras.androiderestaurant.model.DishResult
-import fr.isen.bras.androiderestaurant.model.LoginResult
 import org.json.JSONObject
-
 
 class SignUpFragment : Fragment(R.layout.signup_fragment){
 
     private lateinit var binding: SignupFragmentBinding
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = SignupFragmentBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,11 +40,9 @@ class SignUpFragment : Fragment(R.layout.signup_fragment){
             val mdp2 = binding.pwdagain.text.toString()
             val adresse = binding.adresse.editText?.text.toString()
 
-
             if(isInputValid(nom) && isInputValid(prenom) && isPasswordValid(mdp1) && isAddressValid(adresse) && isEmailValid(mail)
                 && isPasswordValid(mdp2 ) && mdp1==mdp2) {
                 createaccount(nom, prenom, mail, mdp1, adresse)
-
             }
             else{
                 if(mdp1!=mdp2 ) {
@@ -61,23 +50,20 @@ class SignUpFragment : Fragment(R.layout.signup_fragment){
                     binding.pwdagain.setTextColor(Color.RED)
                 }
                 if(!isEmailValid(mail)) binding.adressemailinput.setBackgroundColor(Color.RED)
-
                 if(!isAddressValid(adresse)) binding.adresse.setBackgroundColor(Color.RED)
-
                 Toast.makeText(context, "Champs invalides", Toast.LENGTH_LONG).show()
             }
-
         }
         binding.showhide.setOnClickListener {
             if(binding.showhide.text.toString().equals("Montrer")){
                 binding.pwd.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 binding.showhide.text = "Cacher"
-            } else{
+            } else
+            {
                 binding.pwd.transformationMethod = PasswordTransformationMethod.getInstance()
                 binding.showhide.text = "Montrer"
             }
         }
-
         binding.showhide2.setOnClickListener {
             if(binding.showhide2.text.toString().equals("Montrer")){
                 binding.pwdagain.transformationMethod = HideReturnsTransformationMethod.getInstance()
@@ -87,20 +73,16 @@ class SignUpFragment : Fragment(R.layout.signup_fragment){
                 binding.showhide2.text = "Montrer"
             }
         }
-
-
-
     }
 
-    private fun createaccount(nom : String, prenom : String, mail: String, mdp : String, adresse: String){
-
+    private fun createaccount(nom : String, prenom : String, mail: String, mdp : String, adresse: String) {
 
         val queue = Volley.newRequestQueue(context)
         val url = "http://test.api.catering.bluecodegames.com/user/register"
         val jsonObject = JSONObject()
 
         jsonObject.put("id_shop", "1")
-        jsonObject.put("email",mail)
+        jsonObject.put("email", mail)
         jsonObject.put("firstname", prenom)
         jsonObject.put("address", adresse)
         jsonObject.put("lastname", nom)
@@ -110,27 +92,18 @@ class SignUpFragment : Fragment(R.layout.signup_fragment){
             Request.Method.POST, url, jsonObject,
             { response ->
                 val httpanswer = Gson().fromJson(response.toString(), LoginResult::class.java)
-                if(httpanswer.code=="200") (activity as ConnectionActivity)?.changeFragmentToLogin()
-
-
+                if (httpanswer.code == "200") (activity as ConnectionActivity)?.changeFragmentToLogin()
             }, {
                 // Error in request
-                Log.i("","Volley error: $it")
-
+                Log.i("", "Volley error: $it")
             })
 
-        // Volley request policy, only one time request to avoid duplicate transaction
         request.retryPolicy = DefaultRetryPolicy(
             DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
-            // 0 means no retry
-            0, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
-            1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            0,
+            1f
         )
-        // Add the volley post request to the request queue
         queue.add(request)
-
-
-
     }
 
     fun isEmailValid(mail: String): Boolean {
@@ -138,17 +111,11 @@ class SignUpFragment : Fragment(R.layout.signup_fragment){
     }
     fun isInputValid(name: String) :Boolean {
         return name.length >=2
-
     }
     fun isAddressValid (name: String) :Boolean {
         return name.length >=5
-
     }
     fun isPasswordValid(name: String) :Boolean {
         return name.length >= 6
     }
-
-
-
-
 }

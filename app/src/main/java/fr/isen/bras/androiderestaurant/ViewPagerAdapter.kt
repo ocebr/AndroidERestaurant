@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.viewpager.widget.PagerAdapter
 import com.squareup.picasso.Picasso
-import java.util.*
+
 
 
 internal class ViewPagerAdapter(var context: Context, var images: List<String>) : PagerAdapter() {
-
 
     lateinit var layoutInflater: LayoutInflater
 
@@ -24,7 +22,6 @@ internal class ViewPagerAdapter(var context: Context, var images: List<String>) 
         return view.equals( `object`)    }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-
         layoutInflater= LayoutInflater.from(context)
         var view = layoutInflater.inflate(R.layout.image_ressource_file, container,false)
         val img : ImageView =view.findViewById<ImageView>(R.id.imageView)
@@ -34,9 +31,6 @@ internal class ViewPagerAdapter(var context: Context, var images: List<String>) 
                 .load(images[position])
                 .error(R.drawable.pizza)
                 .into(img)
-
-
-
         }
         else{
             img.setImageResource(R.drawable.pizza)
@@ -49,6 +43,4 @@ internal class ViewPagerAdapter(var context: Context, var images: List<String>) 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
     }
-
-
 }
