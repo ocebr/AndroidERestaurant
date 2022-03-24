@@ -19,7 +19,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-
+import androidx.security.crypto.EncryptedSharedPreferences
 
 
 class OrderActivity : MenuActivity() {
@@ -46,7 +46,10 @@ class OrderActivity : MenuActivity() {
         val queue = Volley.newRequestQueue(this)
         val url = "http://test.api.catering.bluecodegames.com/user/order"
         val jsonObject = JSONObject()
-        val id_user = getSharedPreferences("IdSaving", Context.MODE_PRIVATE).getString("id_user","").toString()
+        val id_user = EncSharedPreferences.getInstance(this).getPref("id_user")
+
+
+
         val filename = "/basket.json"
         val file = File(cacheDir.absolutePath + filename)
         var dishbasket = Gson().fromJson(file.readText(), SavedDishInBasket::class.java)
@@ -58,8 +61,6 @@ class OrderActivity : MenuActivity() {
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
             { response ->
-              Log.d("","$response")
-
                 val httpanswer = Gson().fromJson(response.toString(), OrderResult::class.java)
                 if(httpanswer.code=="200")  {
                     var emptyBasket: ArrayList<DishBasket> = ArrayList()
@@ -69,7 +70,6 @@ class OrderActivity : MenuActivity() {
             },
             {
                 // Error in request
-                Log.i("","Volley error: $it")
             })
 
         request.retryPolicy = DefaultRetryPolicy(

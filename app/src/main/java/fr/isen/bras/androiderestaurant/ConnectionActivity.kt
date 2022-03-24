@@ -7,6 +7,8 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
+
+
 class ConnectionActivity : MenuActivity(){
 
     private lateinit var binding: ActivityConnectionBinding
@@ -15,6 +17,9 @@ class ConnectionActivity : MenuActivity(){
         binding = ActivityConnectionBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+
+
 
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
@@ -29,6 +34,11 @@ class ConnectionActivity : MenuActivity(){
             val fragmentManager: FragmentManager = supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragmentContainerView,UserAlreadyConnectedFragment()).commit()
+        }
+
+        binding.about.setOnClickListener {
+            val monIntent : Intent =  Intent(this,AboutYourInfoActivity::class.java)
+            startActivity(monIntent)
         }
     }
 
@@ -46,13 +56,20 @@ class ConnectionActivity : MenuActivity(){
     }
 
     fun saveId (id : String, firstname : String, lastname: String){
-        val sharedPreferences = getSharedPreferences("IdSaving", Context.MODE_PRIVATE)
+        /*val sharedPreferences = getSharedPreferences("IdSaving", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("id_user", id)
-        editor.putString("firstname", firstname)
-        editor.putString("lastname", lastname)
-        editor.apply()
-        editor.commit()
+             editor.putString("firstname", firstname)
+             editor.putString("lastname", lastname)
+             editor.apply()
+             editor.commit()*/
+
+        val sharedPref = EncSharedPreferences.getInstance(this)
+        sharedPref.editPref("id_user", id)
+        sharedPref.editPref("firstname", firstname)
+        sharedPref.editPref("lastname", lastname)
+
+
     }
 
     fun redirectToOrder(){
@@ -68,4 +85,6 @@ class ConnectionActivity : MenuActivity(){
         var name = "$lastname"+ " $firstname"
         return name
     }
+
+
 }

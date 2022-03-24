@@ -42,19 +42,13 @@ class UserPreviousOrdersActivity : MenuActivity(){
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
             { response ->
-
-                Log.d("commandes","$response")
                 val httpanswer = Gson().fromJson(response.toString(), PreviousOrdersResult::class.java)
-
-
                 val itemType = object : TypeToken<List<DishBasket>>() {}.type
                 httpanswer.data.forEach { it.messageList = Gson().fromJson(it.message, itemType)}
                 displayPreviousOrders(httpanswer.data)
 
             },
             {
-                Log.i("","Volley error: $it")
-
             })
         request.retryPolicy = DefaultRetryPolicy(
             DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,

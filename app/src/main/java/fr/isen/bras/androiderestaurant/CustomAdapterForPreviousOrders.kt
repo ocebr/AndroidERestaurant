@@ -23,12 +23,9 @@ class CustomAdapterForPreviousOrders(private val List: List <OrderResults>) : Re
 
         val orders = List[position]
         var orderPrice = 0F
-        Log.d("njre","$orders")
         orders.messageList.forEach { orderPrice+= it.quantity.toFloat() *it.itemdish.prices[0].price.toFloat()}
-
         holder.price.setText(orderPrice.toString()+" €")
         holder.title.setText(orders.receiver)
-
         orders.messageList.forEach { holder.detail.append(it.itemdish.name_fr + " :  " + it.quantity +" \n") }
 
     }

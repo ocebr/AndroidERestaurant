@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="fr.isen.bras.androiderestaurant">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:debuggable="false"
         android:fontFamily="@font/holtwood_one_sc"
         android:icon="@color/design_default_color_background"
         android:label="FOOD LOVER"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light"
-        android:usesCleartextTraffic="true">
-
+        android:usesCleartextTraffic="true"
+        tools:ignore="HardcodedDebugMode">
+        <activity
+            android:name=".AboutYourInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutYourDataActivity"
+            android:exported="false" />
         <activity
             android:name=".UserPreviousOrdersActivity"
             android:exported="false" />

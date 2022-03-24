@@ -95,7 +95,6 @@ class SignUpFragment : Fragment(R.layout.signup_fragment){
                 if (httpanswer.code == "200") (activity as ConnectionActivity)?.changeFragmentToLogin()
             }, {
                 // Error in request
-                Log.i("", "Volley error: $it")
             })
 
         request.retryPolicy = DefaultRetryPolicy(

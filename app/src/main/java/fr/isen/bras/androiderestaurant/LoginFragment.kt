@@ -81,7 +81,7 @@ class LoginFragment  : Fragment (R.layout.login_fragment){
                 }
             },
             {
-                Log.i("","Volley error: $it")
+
             })
         // Volley request policy, only one time request to avoid duplicate transaction
         request.retryPolicy = DefaultRetryPolicy(

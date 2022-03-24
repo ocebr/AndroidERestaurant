@@ -49,10 +49,8 @@ class SelectedCategoryActivity : MenuActivity(), CellClickListener {
                 var gson = Gson()
                 var dishresult = gson.fromJson(response.toString(), DishResult::class.java)
                 displayDishes(dishresult.data.firstOrNull { it.name_fr == category }?.items ?: listOf())
-                Log.d("", "$response")
             }, {
                 // Error in request
-                Log.i("","Volley error: $it")
             })
         // Volley request policy, only one time request to avoid duplicate transaction
         request.retryPolicy = DefaultRetryPolicy(

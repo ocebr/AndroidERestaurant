@@ -29,6 +29,10 @@
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/layout/signup_fragment.xml" value="0.4" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/menu/cart_count.xml" value="0.2421875" />
         <entry key="..\:/Users/ocean/AndroidStudioProjects/AndroidERestaurant/app/src/main/res/menu/main_menu.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout/activity_about_your_data.xml" value="0.2658514492753623" />
+        <entry key="app/src/main/res/layout/activity_about_your_info.xml" value="0.2658514492753623" />
+        <entry key="app/src/main/res/layout/activity_connection.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.2658514492753623" />
       </map>
     </option>
   </component>
